@@ -1,6 +1,7 @@
 window.onload = function() {
 	const score = document.querySelector('#score');
 	const timer = document.querySelector('#time');
+	const life = document.querySelector('#life');
 	const notification = document.querySelector('#notification');
 	const rgb = document.querySelector('#rgb');
 	const colorBoxes = document.querySelector('.color_boxes');
@@ -18,6 +19,7 @@ window.onload = function() {
 	let timerInterval;
 	let scoreTimeout;
 	let gameScore = 0;
+	let lifeRemaining = 3;
 
 	makeRandomColors = () => {
 		let r = Math.floor(Math.random() * 256);
@@ -48,7 +50,7 @@ window.onload = function() {
 
 	for (let box of boxes) {
 		box.addEventListener('click', (e) => {
-			if (box.style.backgroundColor.toUpperCase() == randomColors[id]) {
+			if (box.style.backgroundColor.toUpperCase() == randomColors[id] && randomColors.length != 0) {
 				console.log(box.style.backgroundColor);
 				notification.innerText = `Correct Guess!!`;
 				rgb.style.backgroundColor = randomColors[id];
@@ -58,16 +60,19 @@ window.onload = function() {
 					score.innerHTML = gameScore;
 					newGuess();
 				}, 1500);
-			} else if (box.style.backgroundColor.toUpperCase() != randomColors[id]) {
+			} else if (box.style.backgroundColor.toUpperCase() != randomColors[id] && randomColors.length != 0) {
 				notification.innerText = `Wrong Guess!! try again..`;
+				lifeRemaining--;
+				life.innerText = lifeRemaining;
 			}
+
 			// console.log(box.style.backgroundColor, id);
 		});
 	}
 
 	newGuess = () => {
 		rgb.style.backgroundColor = 'black';
-		id = Math.floor(Math.random() * boxes.length + 1);
+		id = Math.floor(Math.random() * boxes.length);
 		randomColors = [];
 		score.innerText = gameScore;
 
@@ -81,6 +86,8 @@ window.onload = function() {
 		clearInterval(undefinedInterval);
 		clearInterval(timerInterval);
 		gameScore = 0;
+		lifeRemaining = 3;
+		life.innerText = lifeRemaining;
 		newGuess();
 		countdown();
 
@@ -91,6 +98,7 @@ window.onload = function() {
 
 	gameOver = () => {
 		clearInterval(undefinedInterval);
+		clearInterval(timerInterval);
 
 		let item = `${gameScore}`;
 		span = document.createElement('span');
@@ -99,6 +107,7 @@ window.onload = function() {
 		document.getElementById('final-score').appendChild(span);
 		toggleModal();
 		gameScore = 0;
+		lifeRemaining = 3;
 	};
 
 	countdown = () => {
@@ -130,6 +139,13 @@ window.onload = function() {
 				gameOver();
 				console.log('timer done..');
 			}
+
+			if (lifeRemaining == 0) {
+				gameOver();
+			}
+
+			// let newId = Math.floor(Math.random() * boxes.length);
+			// console.log(newId);
 		}, 1000);
 	};
 
