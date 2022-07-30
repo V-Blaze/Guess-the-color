@@ -146,6 +146,57 @@ h5 {
     cursor: pointer;
 }
 
+.game-over {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 80%;
+    margin: 4px;
+    align-items: center;
+    border: solid 1.5px black;
+    border-radius: 6px;
+    box-shadow: 0px 20px 10px 10px rgb(110, 110, 230);
+
+
+}
+
+.gameover-text {
+    padding-top: 5%;
+    height: 84%;
+    text-align: center;
+}
+
+.gameover-text h2 {
+    height: 50%;
+    font-size: large;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.gameover-text span {
+    height: 50%;
+    font-size: larger;
+    font-weight: bolder;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.gameover-btn {
+    padding-bottom: 1%;
+    height: 10%;
+    width: 90%;
+    text-align: center;
+}
+
+#gameover-btn {
+    background-color: aquamarine;
+    width: 60%;
+    padding: 6px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+
 #box_1 {
     background-color: red;
 }

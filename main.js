@@ -2,9 +2,16 @@ const score = document.querySelector('#score');
 const timer = document.querySelector('#time');
 const notification = document.querySelector('#notification');
 const rgb = document.querySelector('#rgb');
+const colorBoxes = document.querySelector('.color_boxes');
+const gameOverBtn = document.querySelector('#gameover-btn');
 const boxes = document.querySelectorAll('.box');
 
 const box_1 = document.getElementById('box_1');
+
+//Modal
+const modal = document.querySelector('.modal');
+const trigger = document.querySelector('.trigger');
+const closeButton = document.querySelector('.close-button');
 
 let randomColors = [];
 let currentColor;
@@ -12,6 +19,7 @@ let id;
 let undefinedInterval;
 let scoreTimeout;
 let gameScore = 0;
+let gameOverContent = ``;
 
 makeRandomColors = () => {
 	let r = Math.floor(Math.random() * 256);
@@ -37,7 +45,7 @@ displayRandomColor = () => {
 
 	rgb.innerText = randomColors[id];
 	boxes[id].style.backgroundColor = randomColors[id];
-	notification.innerText = `Inprogress ${id}`;
+	notification.innerText = `Inprogress ${id + 1}`;
 };
 
 for (let box of boxes) {
@@ -70,9 +78,26 @@ newGuess = () => {
 	clearTimeout(scoreTimeout);
 };
 
+gameOver = () => {
+	clearInterval(undefinedInterval);
+	gameOverContent = `
+	<div class="game-over">
+		<div class="gameover-text">
+			<h2>Your Total score</h2>
+			<span>${gameScore}</span>
+		</div>
+		<div class="gameover-btn">
+			<button id="gameover-btn">Start</button>
+
+		</div>
+	</div>`;
+	colorBoxes.innerHTML = gameOverContent;
+	// toggleModal();
+};
+
 countdown = () => {
-	let minute = 5;
-	let sec = 60;
+	let minute = 0;
+	let sec = 10;
 	let timerInterval;
 	timerInterval = setInterval(function() {
 		timer.innerText = `${minute}:${sec} `;
@@ -81,21 +106,28 @@ countdown = () => {
 			minute--;
 			sec = 60;
 			if (minute == 0) {
-				timer.innerText = `0:00`;
-				clearInterval(timerInterval);
+				sec = 60;
 			}
+		}
+
+		if (timer.innerText == '0:0') {
+			timer.innerText = `0:00`;
+			clearInterval(timerInterval);
+		}
+	}, 1000);
+
+	// Reloads app if guess color shows undefines due to unloaded style property
+
+	undefinedInterval = setInterval(function() {
+		if (rgb.innerText == 'undefined') {
+			newGuess();
+		}
+		if (timer.innerText == '0:00') {
+			gameOver();
+			console.log('timer done..');
 		}
 	}, 1000);
 };
-
-undefinedInterval = setInterval(function() {
-	if (rgb.innerText == 'undefined') {
-		newGuess();
-	}
-	if (timer.innerText == '0:00') {
-		// window.alert('Game Over!!');
-	}
-}, 1000);
 
 window.onload = function() {
 	newGuess();
@@ -103,3 +135,8 @@ window.onload = function() {
 
 	// console.log(boxes[id].style.backgroundColor, randomColors[id]);
 };
+
+// add a gameOver Feature
+// add a max attempt feature
+//add life lines "eliminate two colors", 'suggest the corect color', 'change rgb background to the correct color'
+//
