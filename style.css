@@ -80,12 +80,14 @@ main {
     text-align: center;
     background-color: rgb(147, 238, 147);
     margin: 6px;
+
 }
 
 .notification span {
     background-color: transparent;
     font-family: 'Square Peg', cursive;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .blink {
