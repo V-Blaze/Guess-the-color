@@ -26,7 +26,7 @@
             <h3 id="rgb">RGB ${ COLOUR TO GUESS}</h3>
         </div>
         <div class="notification">
-            <span class="blink" id="notification">Brief notification</span>
+            <span class="blink" id="notification">START GAME</span>
         </div>
         <div class="color_boxes">
             <div class="flex-item box" id="box_1"></div>
@@ -36,7 +36,20 @@
             <div class="flex-item box" id="box_5"></div>
             <div class="flex-item box" id="box_6"></div>
             
+
         </div>
+        <div class="game-background">
+                <div class="game-over">
+                    <div class="gameover-text">
+                        <h2>Your Total score</h2>
+                        <span id="final-score"></span>
+                    </div>
+                    <div class="gameover-btn">
+                        <button id="gameover-btn"  onclick="startGame()">Start</button>
+            
+                    </div>
+                </div>
+            </div>
 
 
     </main>
