@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess The Color</title>
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -13,27 +14,27 @@
 <body>
     <header>
         <div class="time">
-            <span class="material-symbols-sharp">timer</span><span>2:00</span>
+            <span class="material-symbols-sharp">timer</span><span id="time">6:00</span>
         </div>
         <div class="score">
-            <span class="material-symbols-sharp">scoreboard</span><span>56</span>
+            <span class="material-symbols-sharp">scoreboard</span><span id="score">0</span>
         </div>
     </header>
     <main>
         <div class="question">
             <h1>Guess The Colour</h1>
-            <h3>RGB ${ COLOUR TO GUESS}</h3>
+            <h3 id="rgb">RGB ${ COLOUR TO GUESS}</h3>
         </div>
         <div class="notification">
-            <span class="blink">Brief notification</span>
+            <span class="blink" id="notification">Brief notification</span>
         </div>
         <div class="color_boxes">
-            <div class="flex-item" id="box_1">BOX 1</div>
-            <div class="flex-item" id="box_2">BOX 2</div>
-            <div class="flex-item" id="box_3">BOX 3</div>
-            <div class="flex-item" id="box_4">BOX 4</div>
-            <div class="flex-item" id="box_5">BOX 5</div>
-            <div class="flex-item" id="box_6">BOX 6</div>
+            <div class="flex-item box" id="box_1"></div>
+            <div class="flex-item box" id="box_2"></div>
+            <div class="flex-item box" id="box_3"></div>
+            <div class="flex-item box" id="box_4"></div>
+            <div class="flex-item box" id="box_5"></div>
+            <div class="flex-item box" id="box_6"></div>
         </div>
 
     </main>

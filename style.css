@@ -27,6 +27,8 @@ header div {
     justify-content: center;
     align-items: center;
     display: flex;
+    width: 30%;
+    /* height: 80%; */
     color: white;
     background-color: blue;
     margin: 6px;
@@ -67,7 +69,7 @@ main {
 .question h3 {
     padding-top: 6px;
     margin: 6px;
-    background-color: brown;
+    background-color: black;
     color: white;
     font-size: medium;
     font-family: 'Orbitron', sans-serif;
@@ -87,7 +89,7 @@ main {
 }
 
 .blink {
-    animation: blinker 1s step-start infinite;
+    animation: blinker 1.7s step-start infinite;
 }
 
 @keyframes blinker {
