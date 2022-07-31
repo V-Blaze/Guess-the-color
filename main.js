@@ -7,6 +7,9 @@ window.onload = function() {
 	const colorBoxes = document.querySelector('.color_boxes');
 	const boxes = document.querySelectorAll('.box');
 	const gameOverBtn = document.querySelector('#gameover-btn');
+	const easyBtn = document.querySelector('#easy');
+	const hardBtn = document.querySelector('#hard');
+	const levelDivs = document.querySelectorAll('.level_div');
 	const modal = document.querySelector('.game-background');
 
 	const box_1 = document.getElementById('box_1');
@@ -20,6 +23,7 @@ window.onload = function() {
 	let scoreTimeout;
 	let gameScore = 0;
 	let lifeRemaining = 3;
+	let isEasy = true;
 
 	makeRandomColors = () => {
 		let r = Math.floor(Math.random() * 256);
@@ -72,7 +76,12 @@ window.onload = function() {
 
 	newGuess = () => {
 		rgb.style.backgroundColor = 'black';
-		id = Math.floor(Math.random() * boxes.length);
+		if (isEasy) {
+			id = Math.floor(Math.random() * (boxes.length - levelDivs.length));
+		} else {
+			id = Math.floor(Math.random() * boxes.length);
+		}
+
 		randomColors = [];
 		score.innerText = gameScore;
 
@@ -85,6 +94,7 @@ window.onload = function() {
 	startGame = () => {
 		clearInterval(undefinedInterval);
 		clearInterval(timerInterval);
+
 		gameScore = 0;
 		lifeRemaining = 3;
 		life.innerText = lifeRemaining;
@@ -99,7 +109,6 @@ window.onload = function() {
 	gameOver = () => {
 		clearInterval(undefinedInterval);
 		clearInterval(timerInterval);
-
 		let item = `${gameScore}`;
 		span = document.createElement('span');
 		let text = document.createTextNode(item);
@@ -108,6 +117,22 @@ window.onload = function() {
 		toggleModal();
 		gameScore = 0;
 		lifeRemaining = 3;
+	};
+
+	ChangeLevel = () => {
+		document.getElementById('color_boxes').style.display = 'none';
+
+		// let item = `${gameScore}`;
+		// span = document.createElement('div');
+		// let text = document.createTextNode(item);
+		// span.appendChild(text);
+		// span.id = `box_${id2}`;
+		// span.className = 'flex-item box';
+		// span.style.backgroundColor = randomColors[7];
+		// document.location.reload();
+		// let div = document.createElement('div');
+		// document.getElementsByClassName('color_boxes').appendChild(div);
+		// console.log('added');
 	};
 
 	countdown = () => {
@@ -149,6 +174,26 @@ window.onload = function() {
 		}, 1000);
 	};
 
+	easyBtn.addEventListener('click', (e) => {
+		isEasy = true;
+		easyBtn.classList.add('selected');
+		hardBtn.classList.remove('selected');
+		for (let div of levelDivs) {
+			div.classList.add('show_hide');
+		}
+		startGame();
+	});
+
+	hardBtn.addEventListener('click', (e) => {
+		isEasy = false;
+		easyBtn.classList.remove('selected');
+		hardBtn.classList.add('selected');
+		for (let div of levelDivs) {
+			div.classList.remove('show_hide');
+		}
+		startGame();
+	});
+
 	toggleModal = () => {
 		modal.classList.toggle('show-modal');
 	};
@@ -161,3 +206,5 @@ window.onload = function() {
 // add a max attempt feature
 //add life lines "eliminate two colors", 'suggest the corect color', 'change rgb background to the correct color'
 //
+
+// if level is hard cha

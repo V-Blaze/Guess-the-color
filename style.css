@@ -65,7 +65,7 @@ main {
     border-left: red solid 2px;
     border-right: red solid 2px;
     border-bottom: red solid 2px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin: 6px;
 
 }
@@ -84,8 +84,10 @@ main {
     text-align: center;
     background-color: rgb(147, 238, 147);
     margin: 6px;
+    margin-bottom: 0;
 
 }
+
 
 .notification span {
     background-color: transparent;
@@ -93,6 +95,41 @@ main {
     font-weight: bold;
     cursor: pointer;
 }
+
+.action {
+    display: flex;
+    padding: 4px;
+    text-align: center;
+    background-color: rgb(147, 238, 147);
+    /* margin: 6px; */
+    margin-left: 6px;
+    margin-right: 6px;
+    justify-content: space-around;
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+    border-bottom: 2px solid red;
+    border-radius: 8px;
+}
+
+.action span {
+
+    /* background-color: transparent; */
+    font-family: 'Square Peg', cursive;
+    width: 30%;
+    border: 1.5px solid;
+    border-radius: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: red;
+    color: white;
+}
+
+
 
 .blink {
     animation: blinker 1.7s step-start infinite;
@@ -248,4 +285,23 @@ h5 {
 
 #box_6 {
     background-color: violet;
+}
+
+#box_7 {
+    background-color: orange;
+    /* display: none; */
+}
+
+#box_8 {
+    background-color: brown;
+    /* display: none; */
+}
+
+#box_9 {
+    background-color: magenta;
+    /* display: none; */
+}
+
+.show_hide {
+    display: none;
 }
