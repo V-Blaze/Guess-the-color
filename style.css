@@ -302,6 +302,21 @@ h5 {
     /* display: none; */
 }
 
-.show_hide {
+#box_10 {
+    background-color: royalblue;
+    /* display: none; */
+}
+
+#box_11 {
+    background-color: springgreen;
+    /* display: none; */
+}
+
+#box_12 {
+    background-color: hotpink;
+    /* display: none; */
+}
+
+.hide_box {
     display: none;
 }

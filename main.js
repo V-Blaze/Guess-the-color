@@ -4,12 +4,12 @@ window.onload = function() {
 	const life = document.querySelector('#life');
 	const notification = document.querySelector('#notification');
 	const rgb = document.querySelector('#rgb');
-	const colorBoxes = document.querySelector('.color_boxes');
+	const flexBoxes = document.querySelectorAll('.flex-item');
 	const boxes = document.querySelectorAll('.box');
 	const gameOverBtn = document.querySelector('#gameover-btn');
 	const easyBtn = document.querySelector('#easy');
+	const mediumBtn = document.querySelector('#medium');
 	const hardBtn = document.querySelector('#hard');
-	const levelDivs = document.querySelectorAll('.level_div');
 	const modal = document.querySelector('.game-background');
 
 	const box_1 = document.getElementById('box_1');
@@ -23,7 +23,9 @@ window.onload = function() {
 	let scoreTimeout;
 	let gameScore = 0;
 	let lifeRemaining = 3;
-	let isEasy = true;
+	let islevel = 'easy';
+	let easyDiv = 6;
+	let mediumDiv = 9;
 
 	makeRandomColors = () => {
 		let r = Math.floor(Math.random() * 256);
@@ -76,9 +78,12 @@ window.onload = function() {
 
 	newGuess = () => {
 		rgb.style.backgroundColor = 'black';
-		if (isEasy) {
-			id = Math.floor(Math.random() * (boxes.length - levelDivs.length));
-		} else {
+		if (islevel == 'easy') {
+			id = Math.floor(Math.random() * easyDiv);
+			console.log(id);
+		} else if (islevel == 'medium') {
+			id = Math.floor(Math.random() * mediumDiv);
+		} else if (islevel == 'hard') {
 			id = Math.floor(Math.random() * boxes.length);
 		}
 
@@ -117,22 +122,6 @@ window.onload = function() {
 		toggleModal();
 		gameScore = 0;
 		lifeRemaining = 3;
-	};
-
-	ChangeLevel = () => {
-		document.getElementById('color_boxes').style.display = 'none';
-
-		// let item = `${gameScore}`;
-		// span = document.createElement('div');
-		// let text = document.createTextNode(item);
-		// span.appendChild(text);
-		// span.id = `box_${id2}`;
-		// span.className = 'flex-item box';
-		// span.style.backgroundColor = randomColors[7];
-		// document.location.reload();
-		// let div = document.createElement('div');
-		// document.getElementsByClassName('color_boxes').appendChild(div);
-		// console.log('added');
 	};
 
 	countdown = () => {
@@ -174,23 +163,64 @@ window.onload = function() {
 		}, 1000);
 	};
 
+	ChangeLevel = () => {
+		// if (islevel == 'easy') {
+		// 	for (let i = boxes.length - 1; i >= 6; i--) {
+		// 		console.log(arr[i]);
+		// 	}
+		// }
+	};
+
 	easyBtn.addEventListener('click', (e) => {
-		isEasy = true;
+		isEasy = 'easy';
 		easyBtn.classList.add('selected');
+		mediumBtn.classList.remove('selected');
 		hardBtn.classList.remove('selected');
-		for (let div of levelDivs) {
-			div.classList.add('show_hide');
+		for (let box of boxes) {
+			box.classList.remove('hide_box');
+			box.style.height = '30%';
+			box.style.width = '30%';
 		}
+
+		for (let i = boxes.length - 1; i >= easyDiv; i--) {
+			boxes[i].classList.add('hide_box');
+		}
+		// for (let div of levelDivs) {
+		// 	div.classList.add('hide_box');
+		// }
+
+		startGame();
+	});
+
+	mediumBtn.addEventListener('click', (e) => {
+		islevel = 'medium';
+		mediumBtn.classList.add('selected');
+		easyBtn.classList.remove('selected');
+		hardBtn.classList.remove('selected');
+		for (let box of flexBoxes) {
+			box.classList.remove('hide_box');
+			box.style.height = '30%';
+			box.style.width = '30%';
+		}
+		for (let i = boxes.length - 1; i >= mediumDiv; i--) {
+			boxes[i].classList.add('hide_box');
+		}
+
 		startGame();
 	});
 
 	hardBtn.addEventListener('click', (e) => {
-		isEasy = false;
-		easyBtn.classList.remove('selected');
+		islevel = 'hard';
 		hardBtn.classList.add('selected');
-		for (let div of levelDivs) {
-			div.classList.remove('show_hide');
+		easyBtn.classList.remove('selected');
+		mediumBtn.classList.remove('selected');
+
+		for (let box of flexBoxes) {
+			box.classList.remove('hide_box');
+			box.style.height = '20%';
+			box.style.width = '30%';
 		}
+
 		startGame();
 	});
 
