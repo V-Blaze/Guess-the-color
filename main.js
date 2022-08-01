@@ -12,6 +12,10 @@ window.onload = function() {
 	const hardBtn = document.querySelector('#hard');
 	const modal = document.querySelector('.game-background');
 
+	const half = document.querySelector('#half');
+	const extraLife = document.getElementById('extra-life');
+	const skip = document.getElementById('skip');
+
 	const box_1 = document.getElementById('box_1');
 
 	let randomColors = [];
@@ -22,7 +26,7 @@ window.onload = function() {
 	let timerInterval;
 	let scoreTimeout;
 	let gameScore = 0;
-	let lifeRemaining = 3;
+	let lifeRemaining = 6;
 	let islevel = 'easy';
 	let easyDiv = 6;
 	let mediumDiv = 9;
@@ -111,6 +115,7 @@ window.onload = function() {
 		life.innerText = lifeRemaining;
 		newGuess();
 		countdown();
+		resetHelpers();
 
 		if (document.getElementById('final-score').childElementCount != 0) {
 			document.getElementById('final-score').removeChild(span);
@@ -175,6 +180,57 @@ window.onload = function() {
 		// 		console.log(arr[i]);
 		// 	}
 		// }
+	};
+
+	removeHalf = () => {
+		if (randomColors.length != 0) {
+			if (islevel == 'easy') {
+				let easyHalf = [];
+				let easyid;
+				for (let i = 0; i < easyDiv; i++) {
+					easyid = Math.floor(Math.random() * easyDiv);
+					console.log(randomColors[easyid]);
+				}
+			}
+
+			// else if (islevel == 'medium') {
+			// 	id = Math.floor(Math.random() * mediumDiv);
+			// } else if (islevel == 'hard') {
+			// 	id = Math.floor(Math.random() * boxes.length);
+			// }
+
+			console.log('half click and removed');
+			half.classList.add('clicked');
+			half.onclick = '';
+		}
+	};
+
+	getLife = () => {
+		if (randomColors.length != 0) {
+			lifeRemaining += 4;
+			life.innerText = lifeRemaining;
+			// console.log('life click and removed');
+			extraLife.classList.add('clicked');
+			extraLife.onclick = '';
+		}
+	};
+
+	skipGuess = () => {
+		if (randomColors.length != 0) {
+			newGuess();
+			// console.log('skip click and removed');
+			skip.classList.add('clicked');
+			skip.onclick = '';
+		}
+	};
+
+	resetHelpers = () => {
+		half.classList.remove('clicked');
+		half.onclick = removeHalf;
+		extraLife.classList.remove('clicked');
+		extraLife.onclick = getLife;
+		skip.classList.remove('clicked');
+		skip.onclick = skipGuess;
 	};
 
 	easyBtn.addEventListener('click', (e) => {
