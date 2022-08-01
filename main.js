@@ -101,7 +101,13 @@ window.onload = function() {
 		clearInterval(timerInterval);
 
 		gameScore = 0;
-		lifeRemaining = 3;
+		if (islevel == 'easy') {
+			lifeRemaining = 6;
+		} else if (islevel == 'medium') {
+			lifeRemaining = 4;
+		} else if (islevel == 'hard') {
+			lifeRemaining = 3;
+		}
 		life.innerText = lifeRemaining;
 		newGuess();
 		countdown();
@@ -121,7 +127,7 @@ window.onload = function() {
 		document.getElementById('final-score').appendChild(span);
 		toggleModal();
 		gameScore = 0;
-		lifeRemaining = 3;
+		// lifeRemaining = 3;
 	};
 
 	countdown = () => {
@@ -172,7 +178,7 @@ window.onload = function() {
 	};
 
 	easyBtn.addEventListener('click', (e) => {
-		isEasy = 'easy';
+		islevel = 'easy';
 		easyBtn.classList.add('selected');
 		mediumBtn.classList.remove('selected');
 		hardBtn.classList.remove('selected');

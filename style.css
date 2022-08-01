@@ -98,13 +98,15 @@ main {
 
 .action {
     display: flex;
+    /* width: 80%; */
     padding: 4px;
     text-align: center;
     background-color: rgb(147, 238, 147);
     /* margin: 6px; */
     margin-left: 6px;
     margin-right: 6px;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     border-left: 2px solid red;
     border-right: 2px solid red;
     border-bottom: 2px solid red;
@@ -122,6 +124,26 @@ main {
     padding-right: 4px;
     font-weight: bold;
     cursor: pointer;
+    align-items: center;
+}
+
+.levels {
+    display: flex;
+    background-color: transparent;
+    width: 40%;
+    justify-content: space-around;
+}
+
+.helpers {
+    display: flex;
+    background-color: transparent;
+    width: 40%;
+    justify-content: space-around;
+}
+
+.use {
+    display: flex;
+    width: 20%;
 }
 
 .selected {
