@@ -315,6 +315,7 @@ h5 {
 
 #box_1 {
     background-color: red;
+
 }
 
 #box_2 {
@@ -369,4 +370,8 @@ h5 {
 
 .hide_box {
     display: none;
+}
+
+.invisible {
+    visibility: hidden;
 }

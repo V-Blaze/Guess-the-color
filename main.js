@@ -49,6 +49,7 @@ window.onload = function() {
 
 	displayRandomColor = () => {
 		for (let j = 0; j < boxes.length; j++) {
+			boxes[j].classList.remove('invisible');
 			boxes[j].style.backgroundColor = randomColors[j];
 			// boxes[j].innerText = randomColors[j];
 		}
@@ -186,18 +187,38 @@ window.onload = function() {
 		if (randomColors.length != 0) {
 			if (islevel == 'easy') {
 				let easyHalf = [];
-				let easyid;
-				for (let i = 0; i < easyDiv; i++) {
-					easyid = Math.floor(Math.random() * easyDiv);
-					console.log(randomColors[easyid]);
+				let easyId;
+
+				while (easyHalf.length < 3) {
+					easyId = Math.floor(Math.random() * 6);
+					if (!easyHalf.includes(easyId) && easyId != id) {
+						easyHalf.push(easyId);
+						boxes[easyId].classList.add('invisible');
+					}
+				}
+			} else if (islevel == 'medium') {
+				let mediumHalf = [];
+				let mediumId;
+
+				while (mediumHalf.length < 4) {
+					mediumId = Math.floor(Math.random() * 9);
+					if (!mediumHalf.includes(mediumId) && mediumId != id) {
+						mediumHalf.push(mediumId);
+						boxes[mediumId].classList.add('invisible');
+					}
+				}
+			} else if (islevel == 'hard') {
+				let hardHalf = [];
+				let hardId;
+
+				while (hardHalf.length < 6) {
+					hardId = Math.floor(Math.random() * 12);
+					if (!hardHalf.includes(hardId) && hardId != id) {
+						hardHalf.push(hardId);
+						boxes[hardId].classList.add('invisible');
+					}
 				}
 			}
-
-			// else if (islevel == 'medium') {
-			// 	id = Math.floor(Math.random() * mediumDiv);
-			// } else if (islevel == 'hard') {
-			// 	id = Math.floor(Math.random() * boxes.length);
-			// }
 
 			console.log('half click and removed');
 			half.classList.add('clicked');
